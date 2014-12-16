@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<div class="container" ng-controller="jobclusterCtrl">
+  <h1>Job Cluster Search</h1>
+  {% raw %}
+  <div class="row">
+    
+    <div class="col-md-4" id="d3chart">
+      
+    </div>
+    <div class="col-md-4">
+      <bar-chart data="{{d3count}}"></bar-chart>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-md-4">
+        
+        
+        <div>
+
+            <ul>
+                <li ng-repeat="job in jobs">{{job.jobtitle}}</li>
+
+            </ul>
+            
+       
+            
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <ul>
+            <li ng-repeat="data in d3data">{{data.name}}: {{data.children.length }}</li>
+
+        </ul>
+        
+      </div>
+      
+    </div>
+    
+{% endraw %} 
+</div>
+
+
