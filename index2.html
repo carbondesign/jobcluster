@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+  <body ng-app="myApp" ng-init="progress=50">
+    <input type="range" ng-model="progress"></input>
+    <br>
+    <progress-bar progress="progress"></progress-bar>
+  <script>
+    var myApp = angular.module('myApp', []);
+    myApp.directive('progressBar', function(){
+      function link(scope, el, attr){
+        el = el[0]
+        var width = 500
+        var height = 20
+        var svg = d3.select(el).append('svg')
+          .attr({width: width, height: height})
+          .style('border', '1px solid black');
+
+        // the inner progress bar `<rect>`
+        var rect = svg.append('rect').style('fill', 'blue');
+
+        scope.$watch('progress', function(progress){
+          rect.attr({x: 0, y: 0, width: width * progress / 100, height: height });
+        })
+      }
+      return {
+        link: link,
+        restrict: 'E',
+        scope: { progress: '=' }
+      };
+    });
+  </script>
+</body>
+</html>

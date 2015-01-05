@@ -1,16 +1,46 @@
 ---
 layout: default
 ---
-<div class="container" ng-controller="jobclusterCtrl">
+<div class="container" ng-controller="jobclusterCtrl" ng-init="test={value:60}">
   <h1>Job Cluster Search</h1>
+  <style type="text/css">
+    .bluebar{
+      background-color: lightblue; 
+    }
+    .progressBar{width:300px;height: 300px; display:block;}
+    .progress_cont{
+      width:200px;
+      height:20px;
+      border:1px black solid;
+      margin-bottom: 20px;
+      overflow: hidden
+    }
+    .pbar{
+      background-color: tomato
+    }
+  </style>
   {% raw %}
   <div class="row">
+    <div class="col-md-4"  ng-init="progress=50; levels=5">
+      <input type="range" ng-model="progress"></input>
+      <br>
+      <progress-bar progress="progress"></progress-bar>
+      <input type="range" ng-model="levels" min ="0" max="5" step ="1" value ="5"></input>
+    </div>
+
+    <div class="col-md-4" ng-controller="inputdemo">
+        <input type="range" ng-model="test.value">
+        <input type="range" ng-model="test.value">
+     
+    </div>
+  </div>
+  <div class="row">
     
+    <div class="col-md-4" >
+      <bar-chart datacount='d3count' ng-model="levels"></bar-chart>
+    </div>
     <div class="col-md-4" id="d3chart">
       
-    </div>
-    <div class="col-md-4">
-      <bar-chart data="{{d3count}}"></bar-chart>
     </div>
   </div>
     <div class="row">
